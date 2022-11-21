@@ -52,7 +52,7 @@ const (
 	ettNewerRef = byte(90) // since OTP 21, only when BIG_CREATION flag is set
 
 	ettExport = byte(113)
-	ettFun    = byte(117) // legacy, wont support it here
+	ettFun    = byte(117) // legacy, won't support it here
 	ettNewFun = byte(112)
 
 	ettPort    = byte(102)
@@ -126,14 +126,13 @@ type Ref struct {
 // Marshaler interface implemented by types that can marshal themselves into valid ETF binary
 // Interface implementation must be over the object e.g. (MyObject) UnmarshalETF:
 //
-// 	type MyObject struct{}
+//		type MyObject struct{}
 //
-// 	func (m MyObject) MarshalETF() ([]byte, error) {
-// 		var encoded []byte
-// 		... encoding routine ...
-// 		return encoded, nil
-// }
-//
+//		func (m MyObject) MarshalETF() ([]byte, error) {
+//			var encoded []byte
+//			... encoding routine ...
+//			return encoded, nil
+//	}
 type Marshaler interface {
 	MarshalETF() ([]byte, error)
 }
@@ -142,13 +141,13 @@ type Marshaler interface {
 // Returns error ErrEmpty for []byte{}.
 // Interface implementation must be over pointer to the object e.g. (*MyObject) UnmarshalETF:
 //
-// 	type MyObject struct{}
+//	type MyObject struct{}
 //
-// 	func (m *MyObject) UnmarshalETF(b []byte) error {
-// 		var err error
-// 		... decoding routine ...
-// 		return err
-// 	}
+//	func (m *MyObject) UnmarshalETF(b []byte) error {
+//		var err error
+//		... decoding routine ...
+//		return err
+//	}
 type Unmarshaler interface {
 	UnmarshalETF([]byte) error
 }
@@ -265,8 +264,8 @@ func TermProplistIntoStruct(term Term, dest interface{}) (err error) {
 }
 
 // TermIntoStruct transforms 'term' (etf.Term, etf.List, etf.Tuple, etf.Map) into the
-// given 'dest' (could be a struct, map, slice or array). Its a pretty
-// expencive operation in terms of CPU usage so you shouldn't use it
+// given 'dest' (could be a struct, map, slice or array). It's a pretty
+// expensive operation in terms of CPU usage, so you shouldn't use it
 // on highload parts of your code. Use manual type casting instead.
 func TermIntoStruct(term Term, dest interface{}) (err error) {
 	defer func() {
